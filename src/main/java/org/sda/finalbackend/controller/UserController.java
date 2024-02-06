@@ -25,13 +25,20 @@ public class UserController {
 
            User userDb= this.userService.createUser(user);
             ApiResponse response = new ApiResponse.Builder()
-                    .status(200).message("User saved with sucses")
+                    .status(200)
+                    .message("User saved with success")
                     .data(userDb)
                     .build();
            return ResponseEntity.ok(response);
 
     }catch (InvalidEmailOrUsernameException invalidEmailOrUsernameException){
-            return ResponseEntity.status(HttpStatusCode.valueOf(400)).body(null);
+            ApiResponse response = new ApiResponse.Builder()
+                    .status(400)
+                    .message(invalidEmailOrUsernameException.getMessage())
+                    .data(null)
+                    .build();
+
+            return ResponseEntity.status(HttpStatusCode.valueOf(400)).body(response);
         }
     }
 
