@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository <User,Integer>{
 
     Optional<User> getByUsername(String username);
 
-    Optional<User>GetByEmailEndUsername(String email,String username);
+    Optional<User>getByEmailOrUsername(String email,String username);
 
 
 }
