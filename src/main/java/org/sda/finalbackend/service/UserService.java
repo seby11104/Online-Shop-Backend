@@ -70,6 +70,9 @@ public class UserService {
 
         }
         //Fixme:De validat daca noul username sau email nu sant prezente in baza de date(Tema)
+
+        String encryptedPassword = encryptPassword(user.getPassword());
+        user.setPassword(encryptedPassword);
         return this.userRepository.save(user);
     }
 
