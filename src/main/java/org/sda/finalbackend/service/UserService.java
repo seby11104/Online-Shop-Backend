@@ -5,6 +5,7 @@ import org.sda.finalbackend.entity.User;
 import org.sda.finalbackend.errors.InvalidEmailOrUsernameException;
 import org.sda.finalbackend.errors.UserNotFoundException;
 import org.sda.finalbackend.repository.UserRepository;
+import org.sda.finalbackend.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class UserService {
         @Autowired
         private UserRepository userRepository ;
-        UserService(UserRepository userRepository){
+        public UserService(UserRepository userRepository){
             this.userRepository=userRepository;
         }
     public User createUser(User user)throws InvalidEmailOrUsernameException
@@ -44,7 +45,7 @@ public class UserService {
         usr.setEmail(user.getEmail());
         usr.setUserRole(user.getUserRole());
         // criptam parola folosind libraria Bcrypt, iar parola criptata o salvam in baza de date
-        String encryptedPassword = this.encryptPassword(user.getPassword());
+        String encryptedPassword = Utils.getInstance().encryptPassword(user.getPassword());
         usr.setPassword(encryptedPassword);
 
        return this.userRepository.save(usr);
@@ -71,7 +72,7 @@ public class UserService {
         }
         //Fixme:De validat daca noul username sau email nu sant prezente in baza de date(Tema)
 
-        String encryptedPassword = encryptPassword(user.getPassword());
+        String encryptedPassword = Utils.getInstance().encryptPassword(user.getPassword());
         user.setPassword(encryptedPassword);
         return this.userRepository.save(user);
     }
@@ -121,19 +122,9 @@ public class UserService {
 
 
     }
-    /**
-     * This method it is used to encrypt the password before save it in database
-     *
-     * @param password - clear password
-     * @return - encrypted password
-     */
-    private String encryptPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
-    }
 
-    private boolean checkPassword(String password, String bdPassword) {
-        return BCrypt.checkpw(password, bdPassword);
-    }
+
+
 
 
 

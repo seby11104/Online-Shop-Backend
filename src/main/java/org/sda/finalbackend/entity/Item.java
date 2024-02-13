@@ -11,9 +11,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
-    private String descprition;
+    private String description;
     private Double price;
-    private String iamgeUrl;
+    private String imageUrl;
     @Enumerated(EnumType.STRING)
     private Category category;
 
