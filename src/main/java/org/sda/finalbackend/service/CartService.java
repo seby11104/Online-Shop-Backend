@@ -37,12 +37,12 @@ public class CartService {
 
     public Cart createCart(CartDto cartDto) throws Exception
     {
-        if(cartDto.getUserid()==null|| cartDto.getUserid()<=0)
+        if(cartDto.getUserId()==null|| cartDto.getUserId()<=0)
         {
             throw new Exception("Invalid user id");
         }
 
-        Optional<User> userOptional = userRepository.findById(cartDto.getUserid());
+        Optional<User> userOptional = userRepository.findById(cartDto.getUserId());
         if(userOptional.isEmpty())
         {
             throw new  UserNotFoundException("user not found");

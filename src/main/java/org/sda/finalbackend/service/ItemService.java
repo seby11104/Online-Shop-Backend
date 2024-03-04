@@ -1,5 +1,6 @@
 package org.sda.finalbackend.service;
 
+import org.sda.finalbackend.entity.Category;
 import org.sda.finalbackend.entity.Item;
 import org.sda.finalbackend.errors.InvalidItemFIeldsException;
 import org.sda.finalbackend.errors.ItemNotFoundException;
@@ -78,4 +79,11 @@ public class ItemService {
         return itemDB.get();
     }
 
+    public List<Item> findByCategory (String category){
+        if(category.equals("ALL"))
+        {
+            return findAll();
+        }
+        return this.itemRepository.findByCategory(Category.valueOf(category));
+    }
 }

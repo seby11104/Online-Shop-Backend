@@ -102,7 +102,7 @@ public ResponseEntity<ApiResponse> deleteUser(@PathVariable("id") Integer id){
         }
 }
 
-@GetMapping("/user")
+@GetMapping("/users")
 public ResponseEntity<ApiResponse> getAllUsers()
 {
     List<User> users = userService.findAll();

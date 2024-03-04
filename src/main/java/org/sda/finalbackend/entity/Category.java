@@ -2,7 +2,9 @@ package org.sda.finalbackend.entity;
 
 
 public enum Category {
-    SMALL,
-    MEDIUM,
-    LARGE
+
+    LUMINI,
+    JANTE,
+    SUSPENSIE,
+    ACCESORII
 }

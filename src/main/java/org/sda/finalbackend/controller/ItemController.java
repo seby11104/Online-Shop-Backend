@@ -107,5 +107,19 @@ public class ItemController {
 
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/items/{category}")
+    public ResponseEntity<ApiResponse> getItemsByCategory(@PathVariable("category") String category)
+    {
+        List<Item> items=itemService.findByCategory(category);
+
+        ApiResponse response = new ApiResponse.Builder()
+                .status(200)
+                .message("Lista items")
+                .data(items)
+                .build();
+
+        return ResponseEntity.ok(response);
+    }
+
 
 }

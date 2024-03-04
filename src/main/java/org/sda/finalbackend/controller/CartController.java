@@ -44,7 +44,7 @@ public class CartController {
           }
     }
 
-    @GetMapping("/cart")
+    @GetMapping("/carts")
     public ResponseEntity<ApiResponse> getAllCarts()
     {
         List<Cart> cartList = this.cartService.getAllCarts();

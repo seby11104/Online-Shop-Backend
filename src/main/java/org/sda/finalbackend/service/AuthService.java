@@ -4,6 +4,7 @@ import dto.UserDto;
 import org.aspectj.apache.bcel.classfile.Module;
 import org.mindrot.jbcrypt.BCrypt;
 import org.sda.finalbackend.entity.User;
+import org.sda.finalbackend.entity.UserRole;
 import org.sda.finalbackend.errors.InvalidCredentialsException;
 import org.sda.finalbackend.errors.InvalidEmailOrUsernameException;
 import org.sda.finalbackend.errors.UserNotFoundException;
@@ -69,7 +70,7 @@ public class AuthService {
         User usr = new User();
         usr.setUsername(user.getUsername());
         usr.setEmail(user.getEmail());
-        usr.setUserRole(user.getUserRole());
+        usr.setUserRole(UserRole.USER);
         // criptam parola folosind libraria Bcrypt, iar parola criptata o salvam in baza de date
         String encryptedPassword = Utils.getInstance().encryptPassword(user.getPassword());
         usr.setPassword(encryptedPassword);

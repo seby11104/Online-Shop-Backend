@@ -9,6 +9,6 @@ import java.util.List;
 @Data
 public class CartDto {
     private Integer id;
-    private Integer Userid;
+    private Integer userId;
     private List<Item> items;
 }
